@@ -1,0 +1,13 @@
+nav {
+    width: 70vw;
+    height: 20vh; 
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase; 
+  list-style-type: none;
+  gap: 2em;
+  font-weight: 800; 
+}

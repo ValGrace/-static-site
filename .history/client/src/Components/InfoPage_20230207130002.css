@@ -1,0 +1,24 @@
+#about-page {
+    font-size:2rem;
+    text-transform: capitalize;
+   
+    width: 80vw;
+    height: 60vh;
+    text-align: center;
+}
+
+.about-mid {
+   display: flex;
+   gap: 0.4rem;
+   flex-wrap: wrap;
+   flex-direction: row-reverse;
+}
+
+.about-info {
+    width: 25vw;
+}
+
+.abt-img {
+    background-color: black;
+    width: 75vw;
+}

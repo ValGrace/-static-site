@@ -1,0 +1,15 @@
+nav {
+    width: 70vw;
+    height: 20vh;
+    background-color: black;
+}
+
+nav > ul {
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase; 
+  list-style-type: none;
+  gap: 4em;
+  font-weight: 600; 
+  font-size: 1.5rem;
+}

@@ -1,0 +1,43 @@
+form, #dash {
+    width: 80vw;
+}
+.signupForm, .dash, .dashboard {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 0.8em;
+}
+
+input, button {
+    width: 80%;
+    height: 3em;
+    background-color: transparent;
+    color: black;
+}
+
+#sign {
+   width: 40vw;
+}
+
+.toggleForms {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 0.4em;
+    justify-content: center;
+    align-items: center;
+}
+
+.type-btn {
+    background-color: rgb(2, 2, 133);
+    border: none;
+    width: 20vw;
+    border-radius: 8px;
+    text-transform: uppercase;
+    color: aliceblue;
+    font-weight: 700;
+}
+
+.type-btn:hover {
+   background-color: rgb(1, 1, 22);
+}

@@ -1,0 +1,87 @@
+nav {
+    width: 70vw;
+    height: 20vh;
+    display: flex;
+}
+
+nav > ul{
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase; 
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+  font-weight: 600; 
+  font-size: 1.5rem;
+  flex-grow: 1;
+}
+
+#top-text {
+    width: 60vw;
+}
+
+#top-text > h2 {
+    font-size: 4.5rem;
+    text-transform: capitalize;
+    margin: 0;
+    /* float: left; */
+}
+
+#top-text > p {
+    float: right;
+
+}
+
+.head-section {
+    display: flex;
+    width: 60vw;
+    gap: 0.5em;
+}
+
+.head-img {
+    background-color: rgb(1, 51, 51);
+    width: 70%;
+    border-radius: 0.9em;
+    height: 40vh;
+}
+
+.side-section {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+}
+
+.side-img {
+    background-color: black;
+    width: 5rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+.side-blogs > h4, .side-blogs > p {
+    margin: 0;
+}
+
+.site-descr {
+    width: 60vw;
+    background-color: rgba(1, 1, 12, 0.979);
+    color: rgba(255, 255, 255, 0.767);
+    border-radius: 9px;
+    margin-top: 0.9rem;
+    display: flex;
+    /* gap: 0.4rem; */
+    padding: 0.4rem;
+    height: 25vh;
+}
+
+.site-descr > p {
+    width: 75%;
+}
+.site-sep {
+    width: 0.1rem;
+    height: 90%;
+    background-color: azure;
+    margin-right: 0.7rem;
+}
+
