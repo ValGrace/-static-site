@@ -1,0 +1,99 @@
+#about-page {
+    font-size:2rem;
+    text-transform: capitalize;
+   
+    width: 80vw;
+    
+    text-align: center;
+}
+
+.about-mid {
+   display: flex;
+   gap: 0.4rem;
+   flex-wrap: wrap;
+   flex-direction: column;
+}
+
+.about-info, .abt-context {
+    /* width: 25vw; */
+    display: flex;
+    flex-direction: column;
+    
+}
+#context {
+    width: 75vw;
+}
+
+.abt-img {
+    background-color: rgba(54, 4, 4, 0.685);
+    width: 75vw;
+    
+}
+
+.md-editor {
+    width: 80vw;
+    height: 75vh;
+    margin: auto;
+}
+
+.md-editor > textarea {
+    width: 95%;
+    height: 95%;
+    background-color: transparent;
+}
+.md-edit {
+    position: absolute;
+    width: 80vw;
+    height: 90vh;
+    top: 10%;
+    background-color: antiquewhite;
+}
+
+.md-edit > textarea {
+    width: 90%;
+    height: 95%;
+    background-color: rgb(29, 28, 28);
+    color: rgba(240, 248, 255, 0.932);
+    border-radius: 8px;
+    border: none;
+    
+}
+
+.md-btns {
+    display: flex;
+   justify-content: center;
+   align-items: center;
+    gap: 0.7em;
+    width: 90%;
+}
+
+#md-btn {
+    width: 30%;
+    background-color: rgb(5, 0, 17);
+    color: rgb(176, 176, 197);
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.8em;
+    
+}
+@media screen and (min-width: 670px) {
+    #abt-info {
+        flex-direction: row-reverse;
+    }
+    .about-info, .abt-context {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.8em;
+
+    }
+    .abt-pg {
+        display: flex;
+        flex-direction: column;
+        width: 40vw;
+    }
+    .abt-img {
+        width: 40vw;
+    }
+
+}
