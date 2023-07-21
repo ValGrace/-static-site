@@ -1,0 +1,17 @@
+article {
+    width: 50vw;
+}
+
+li {
+    text-decoration: none;
+    text-align: center;
+}
+ img {
+    width: 70vw;
+    height: 40vw;
+ }
+ @media screen and (max-width: 600px){
+    article {
+        width: 90vw;
+    }
+ }

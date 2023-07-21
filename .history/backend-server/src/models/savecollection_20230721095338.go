@@ -21,7 +21,7 @@ const (
 type repo struct{}
 
 type BlogPost struct {
-	ID       string    `firestore:"-"`
+	ID       string    `firestore:"-,omitempty"`
 	Title    string    `firestore:"title,omitempty"`
 	Content  string    `firestore:"content,omitempty"`
 	Author   string    `firestore:"author,omitempty"`
@@ -49,7 +49,7 @@ func (post *BlogPost) Save() *BlogPost {
 	// create collection in firestore and add data to the collection
 	_, _, err = client.Collection(collectionName).Add(ctx, post)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("Failed to create collection")
 	}
 	return post
 }

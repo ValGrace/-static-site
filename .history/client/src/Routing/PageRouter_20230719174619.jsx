@@ -11,7 +11,7 @@ const PageRouter = () => {
             <Route path="/login" element={ <Dashboard />}/>
             <Route path="/about" element={<AboutPage />} />
             <Route path="/articles" element={<Articles />} />
-            <Route exact path="/article/:projectID" element={<Contents />} />
+            <Route exact path="/article/:id" element={<Contents />} />
         </Routes>
     )
 }

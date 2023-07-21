@@ -245,19 +245,6 @@ nav > ul{
     align-items: center;
 }
 
-#icon-section > img {
-    width: 90%;
-    height: 90%;
-} 
-
-.page-link {
-    text-transform: uppercase;
-    text-decoration: none;
-    color: rgb(4, 4, 155);
-    /* touch-action: cross-slide-x; */
-    
-}
-
 @media screen and (max-width: 600px) {
    .side-section {
     height: auto;

@@ -35,12 +35,12 @@ func GetDocs(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func RetrieveDoc(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	vars := mux.Vars(r)
-	projectID := vars["projectID"]
-	post, _ := models.GetSingleDoc(projectID)
-	res, _ := json.Marshal(post)
-	w.WriteHeader(http.StatusOK)
-	w.Write(res)
-}
+// func RetrieveDoc(w http.ResponseWriter, r *http.Reuest) {
+// 	w.Header().Set("Content-Type", "application/json")
+// 	vars := mux.Vars(r)
+// 	projectID := vars[doc.Ref.ID]
+// 	post, _ := models.GetSingleDoc(projectID)
+// 	res, _ := json.Marshal(post)
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write(res)
+// }

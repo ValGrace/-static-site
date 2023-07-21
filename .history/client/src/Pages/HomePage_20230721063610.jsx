@@ -17,7 +17,7 @@ const HomePage = () => {
          </div>
          <MidSection />
          <HomeSection />
-         <Link to="/articles/" className="page-link"><button className="btn-edit">Edit</button></Link>
+         <Link to="/articles" className="page-link"><button className="btn-edit">Edit</button></Link>
          {/* {editor && 
          <form className="md-edit" method="post" action="/articles/" >
             <textarea value={markdown} onChange={editMdFile} name="md"/>
