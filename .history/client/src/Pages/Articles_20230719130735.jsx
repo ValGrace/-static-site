@@ -3,7 +3,6 @@ import Axios from "axios"
 import Navbar from '../Components/Navbar'
 import { account } from '../Utils/appwrite'
 import SingleDoc from './UserDocs'
-import { Link } from 'react-router-dom'
 // import { FaBold, FaItalic, FaList} from 'react-icons/fa'
 import { AiOutlineItalic, AiOutlineUnorderedList, AiOutlineBold, AiOutlineBlock, AiOutlineCamera} from "react-icons/ai"
 
@@ -142,16 +141,12 @@ Write your article here
             <div>
             
                 <h3>Read more articles....</h3>
-                <hr />
-                <div className="value-section">
                 {articleDoc ? articleDoc.map((docs)=> {
                   return (
-                    
-                    <SingleDoc key={docs.ID} {...docs} />
-                    
+                    <SingleDoc key={id} {...docs} />
                   )
-                }) : <h2>No articles yet</h2>}
-               </div> 
+                }) : <div>No articles yet</div>}
+                
             </div>
           </div>
         </>

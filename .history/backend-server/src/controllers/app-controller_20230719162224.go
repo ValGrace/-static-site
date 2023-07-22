@@ -35,7 +35,7 @@ func GetDocs(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
-func RetrieveDoc(w http.ResponseWriter, r *http.Request) {
+func RetrieveDoc(w http.ResponseWriter, r *http.Reuest) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	projectID := vars["projectID"]

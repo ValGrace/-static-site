@@ -1,15 +1,15 @@
 import brin from "../assets/brin.jpg"
-// import { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 function MidSection() {
-    // const [ setRandPost] = useState("")
-    // const getRandomPosts = async() => {
-    //     const posts = await fetch('/articles/')
-    //     const postResponse = await posts.json()
-    //     setRandPost(postResponse)
-    // } 
-    // useEffect(()=> {
-    //     getRandomPosts()
-    // }, [])
+    const [ setRandPost] = useState("")
+    const getRandomPosts = async() => {
+        const posts = await fetch('/articles')
+        const postResponse = await posts.json()
+        setRandPost(postResponse)
+    } 
+    useEffect(()=> {
+        getRandomPosts()
+    }, [])
     return (
         <>
         <div className="site-descr-box">

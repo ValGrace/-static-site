@@ -142,16 +142,12 @@ Write your article here
             <div>
             
                 <h3>Read more articles....</h3>
-                <hr />
-                <div className="value-section">
                 {articleDoc ? articleDoc.map((docs)=> {
                   return (
-                    
                     <SingleDoc key={docs.ID} {...docs} />
-                    
                   )
                 }) : <h2>No articles yet</h2>}
-               </div> 
+                
             </div>
           </div>
         </>

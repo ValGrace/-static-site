@@ -49,7 +49,7 @@ func (post *BlogPost) Save() *BlogPost {
 	// create collection in firestore and add data to the collection
 	_, _, err = client.Collection(collectionName).Add(ctx, post)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("Failed to create collection", err)
 	}
 	return post
 }

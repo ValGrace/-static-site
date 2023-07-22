@@ -8,5 +8,5 @@ import (
 var RegisterRoutes = func(router *mux.Router) {
 	router.HandleFunc("/articles/", controllers.SaveFile).Methods("POST")
 	router.HandleFunc("/articles/", controllers.GetDocs).Methods("GET")
-	router.HandleFunc("/article/{projectID}/", controllers.RetrieveDoc).Methods("GET")
+	router.HandleFunc("/article/{projectID}", controllers.RetrieveDoc).Methods("GET")
 }

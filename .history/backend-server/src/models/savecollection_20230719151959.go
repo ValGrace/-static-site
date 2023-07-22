@@ -21,7 +21,6 @@ const (
 type repo struct{}
 
 type BlogPost struct {
-	ID       string    `firestore:"-"`
 	Title    string    `firestore:"title,omitempty"`
 	Content  string    `firestore:"content,omitempty"`
 	Author   string    `firestore:"author,omitempty"`
@@ -49,7 +48,7 @@ func (post *BlogPost) Save() *BlogPost {
 	// create collection in firestore and add data to the collection
 	_, _, err = client.Collection(collectionName).Add(ctx, post)
 	if err != nil {
-		log.Fatalln(err)
+		log.Fatalln("Failed to create collection")
 	}
 	return post
 }
@@ -76,32 +75,28 @@ func GetCollection() ([]BlogPost, error) {
 			return []BlogPost{}, err
 		}
 		doc.DataTo(&post)
-		post.ID = doc.Ref.ID
 		posts = append(posts, post)
 	}
 	fmt.Println(posts)
 	return posts, nil
 }
 
-func GetSingleDoc(id string) (*BlogPost, error) {
+func GetSingleDoc(id string) (map[string]interface{}, error){
 	ctx := context.Background()
 	client, _ := firestore.NewClient(ctx, "learner-new-project")
-	var blog BlogPost
-	// if err != nil {
-	// 	return nil, err
-	// }
 	defer client.Close()
-	dsnap, err := client.Collection(collectionName).Doc(id).Get(ctx)
-	if err != nil {
-		return nil, err
-	}
-	dsnap.DataTo(&blog)
-	fmt.Print(&blog)
-	return &blog, nil
+   dsnap, err := client.Collection(collectionName).Doc(id).Collections(ctx)
+   if err = nil {
+	return nil, err
+   }
+   docData := dsnap.Data()
+   return m, nil
 }
 
-// func DeleteDoc(id string) (*BlogPost, error) {
-// 	ctx := context.Background()
-// 	client, err := firestore.NewClient(ctx, "learner-new-project")
-// 	va
+// fmt.Println(doc.Data())
+// post := BlogPost{
+// 	Title:   doc.Data()["title"].(string),
+// 	Content: doc.Data()["content"].(string),
+// 	Author:  doc.Data()["author"].(string),
+// 	Created: doc.Data()["created"].(time.Time),
 // }
