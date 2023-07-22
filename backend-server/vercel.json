@@ -1,0 +1,11 @@
+{
+    "routes":[
+        {"src":"/(.*)", "dest":"/src"}
+    ],
+
+    "build": {
+      "env": {
+        "GO_BUILD_FLAGS": "-ldflags '-s -w'"
+      }
+    }
+  }
