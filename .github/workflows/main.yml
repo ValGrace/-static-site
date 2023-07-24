@@ -29,4 +29,3 @@ jobs:
           file: ../../backend-server/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/staticsite:latest
-          
