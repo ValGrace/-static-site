@@ -1,14 +1,14 @@
 package main
 
 import (
-	"context"
 	"embed"
 
 	"fmt"
+
 	"github.com/ValGrace/static-site-backend/src/routes"
 	"github.com/gorilla/mux"
 
-	"log"
+	// "log"
 	"net/http"
 	"path/filepath"
 )

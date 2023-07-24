@@ -4,10 +4,11 @@ import (
 	"embed"
 
 	"fmt"
+
 	"github.com/ValGrace/static-site-backend/src/routes"
 	"github.com/gorilla/mux"
 
-	"log"
+	// "log"
 	"net/http"
 	"path/filepath"
 )
@@ -36,11 +37,11 @@ func main() {
 
 	r := mux.NewRouter()
 	routes.RegisterRoutes(r)
-	spa := clientHandler{staticPath: "../../client/dist", indexPath: "index.html"}
+	spa := clientHandler{staticPath: "../client/dist", indexPath: "index.html"}
 	r.PathPrefix("/").Handler(spa)
 	http.Handle("/", r)
 	fmt.Printf("Starting server at port 8080")
 
-	r.PathPrefix("/assets").Handler(http.StripPrefix("/assets", http.FileServer(http.Dir("../../client/dist/assets"))))
+	r.PathPrefix("/assets").Handler(http.StripPrefix("/assets", http.FileServer(http.Dir("../client/dist/assets"))))
 	http.ListenAndServe(":8080", r)
 }
