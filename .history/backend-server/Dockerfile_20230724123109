@@ -1,0 +1,14 @@
+FROM golang:1.18
+
+WORKDIR / app
+
+COPY go.mod .
+COPY main.go .
+
+RUN go get
+
+RUN CGO_ENABLED=0 go build -o bin .
+
+EXPOSE 8080
+
+ENTRYPOINT [ "/app/bin" ]
