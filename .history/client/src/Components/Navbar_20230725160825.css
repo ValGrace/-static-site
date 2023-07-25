@@ -111,7 +111,7 @@ nav > ul{
     background-color: rgb(34, 34, 34);
     gap: 0.3rem;
     padding: 2.8rem;
-    width: 100%;
+    width: 92%;
 }
 
 .side-section > h2 {
@@ -265,14 +265,6 @@ nav > ul{
    .featured-articles {
     display: flex;
     flex-direction: column;
-   }
-
-   .side-img-left {
-    width: 80vw;
-   }
-
-   .side-img-right {
-    width: 80vw;
    }
 
 }
