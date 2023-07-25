@@ -1,14 +1,19 @@
-FROM golang:1.18
+FROM golang:alpine
 
-WORKDIR / app
+RUN mkdir /app
 
-COPY go.mod .
+COPY . /app
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
 COPY main.go .
 
-RUN go get
-
-RUN CGO_ENABLED=0 go build -o bin .
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/app/bin" ]
+CMD [ "/app/main" ]
+
