@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY *.go ./
 
-# RUN CGO_ENABLED=1 go build -o /docker-gs-ping
+RUN CGO_ENABLED=1 go build -o server .
 
 EXPOSE 8080
 
