@@ -1,5 +1,9 @@
 FROM golang:alpine
 
+RUN mkdir /app
+
+COPY . /app
+
 WORKDIR /app
 
 COPY go.mod go.sum ./
@@ -8,9 +12,8 @@ RUN go mod download
 
 COPY main.go .
 
-RUN go install .
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/docker-gs-ping" ]
+CMD [ "/app/main" ]
 
