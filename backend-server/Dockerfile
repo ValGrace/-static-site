@@ -1,4 +1,4 @@
-FROM golang:1.19
+FROM golang:alpine
 
 WORKDIR /app
 
@@ -6,9 +6,9 @@ COPY go.mod go.sum ./
 
 RUN go mod download
 
-COPY *.go ./
+COPY main.go .
 
-RUN go build
+RUN go build -o app
 
 EXPOSE 8080
 
