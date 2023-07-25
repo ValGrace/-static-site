@@ -1,6 +1,6 @@
 FROM golang:1.19
 
-WORKDIR / app
+WORKDIR /app
 
 COPY go.mod go.sum ./
 
@@ -8,7 +8,7 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN CGO_ENABLED=1 go build -o /docker-gs-ping
+# RUN CGO_ENABLED=1 go build -o /docker-gs-ping
 
 EXPOSE 8080
 
