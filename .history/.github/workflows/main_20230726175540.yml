@@ -36,4 +36,4 @@ jobs:
           context: ./vlient
           file: ./client/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clientsite:latest    
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/staticsite:latest    
