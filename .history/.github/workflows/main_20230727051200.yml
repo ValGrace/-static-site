@@ -22,18 +22,18 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend-server
+          file: ./backend-server/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/staticsite:latest
+      -
         name: Build and push client
         uses: docker/build-push-action@v4
         with:
           context: ./client
           file: ./client/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clientsite:latest
-      -
-        name: Build and push client
-        uses: docker/build-push-action@v4
-        with:
-          context: ./backend-server
-          file: ./backend-server/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/staticsite:latest    
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clientsite:latest    
