@@ -1,0 +1,7 @@
+[phrases.build]
+
+cmds = "go build"
+
+[start]
+
+  cmd = "go run main.go"
