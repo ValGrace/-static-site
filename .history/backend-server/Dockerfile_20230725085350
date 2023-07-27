@@ -1,9 +1,5 @@
 FROM golang:1.19
 
-RUN mkdir /app
-
-COPY . /app
-
 WORKDIR /app
 
 COPY go.mod go.sum ./
@@ -12,9 +8,9 @@ RUN go mod download
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o main
+RUN CGO_ENABLED=1 go build -o server .
 
 EXPOSE 8080
 
-CMD [ "/main" ]
+ENTRYPOINT [ "/docker-gs-ping" ]
 

@@ -1,0 +1,20 @@
+FROM golang:alpine
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY *.go ./
+
+RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+RUN GOPATH=$GOPATH:/root dep ensure
+
+# Now it should build
+RUN GOPATH=$GOPATH:/root go build
+
+EXPOSE 8080
+
+ENTRYPOINT [ "/docker-gs-ping" ]
+

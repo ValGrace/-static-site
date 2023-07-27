@@ -8,8 +8,8 @@ import (
 	"github.com/ValGrace/static-site-backend/src/routes"
 	"github.com/gorilla/mux"
 
+	// "log"
 	"net/http"
-	"os"
 	"path/filepath"
 )
 
