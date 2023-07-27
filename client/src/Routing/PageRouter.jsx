@@ -1,7 +1,7 @@
 import Dashboard from "../Pages/Dashboard";
 import HomePage from "../Pages/HomePage";
 import { Routes, Route} from "react-router-dom"
-import AboutPage from "../Pages/aboutPage";
+import AboutPage from "../Pages/AboutPage";
 import Articles from "../Pages/Articles";
 import Contents from "../Pages/Contents";
 const PageRouter = () => {
