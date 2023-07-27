@@ -19,7 +19,6 @@ const (
 
 var credential string = GetCredentials("F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
-// var credential string = os.Getenv(credential)
 type repo struct{}
 
 type BlogPost struct {
