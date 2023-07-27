@@ -6,20 +6,18 @@ import (
 	firebase "firebase.google.com/go/v4"
 	"fmt"
 	// "github.com/ValGrace/static-site-backend/src/db"
+	"os"
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 	"log"
-	"os"
 	"time"
 )
 
 const (
 	collectionName string = "Blogs"
+	credential     string = os.Getenv("credentials")
 )
 
-var credential string = GetCredentials("F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
-
-// var credential string = os.Getenv(credential)
 type repo struct{}
 
 type BlogPost struct {
@@ -29,13 +27,6 @@ type BlogPost struct {
 	Author   string    `firestore:"author,omitempty"`
 	Featured string    `firestore:"featured,omitempty"`
 	Created  time.Time `firestore:"created,omitempty"`
-}
-
-func GetCredentials(creds string) string {
-	if gcpCreds := os.Getenv("credentials"); gcpCreds != "" {
-		return gcpCreds
-	}
-	return creds
 }
 
 func (post *BlogPost) Save() *BlogPost {
