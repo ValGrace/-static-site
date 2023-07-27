@@ -1,10 +1,10 @@
-FROM node:16.15-alpine as base
+FROM node:latest as base
 
 WORKDIR /app
 
 COPY package*.json .
 
-RUN NODE_ENV=development npm ci
+RUN npm ci
 
 FROM base as build    
 
