@@ -6,7 +6,7 @@ WORKDIR /app/client
 
 COPY ../client/package*.json .
 
-COPY ../client/public ./public
+COPY ../client/public .
 
 COPY ../client/src ./src
 
