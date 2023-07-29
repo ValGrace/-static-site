@@ -6,11 +6,11 @@ WORKDIR /app/client
 
 COPY ../client/package*.json .
 
-COPY ../client/ .
-
 RUN NODE_ENV=development npm ci
 
-FROM base as build    
+FROM base as build 
+
+COPY ../client/ .
 
 RUN npm run build
 
