@@ -4,11 +4,11 @@ FROM node:latest as base
 
 WORKDIR /app/client
 
-COPY ./client/package*.json .
+COPY ../client/package*.json .
 
-COPY ./client/public ./public
+COPY ../client/public ./public
 
-COPY ./client/src ./src
+COPY ../client/src ./src
 
 RUN NODE_ENV=development npm ci
 
@@ -36,7 +36,7 @@ FROM golang:1.19
 
 WORKDIR /app
 
-COPY --from=base /app/client/dist ./client/dist
+COPY --from=base /app/client/dist ../client/dist
 
 COPY --from=backend /app/backend/main ./ 
 
