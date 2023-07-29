@@ -6,9 +6,7 @@ WORKDIR /app/client
 
 COPY ../client/package*.json .
 
-COPY ../client/public .
-
-COPY ../client/src ./src
+COPY ../client/ .
 
 RUN NODE_ENV=development npm ci
 
