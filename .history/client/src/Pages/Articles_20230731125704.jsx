@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState} from 'react'
-import { Axios } from "axios"
+import Axios from "axios"
 import Navbar from '../Components/Navbar'
 import { account } from '../Utils/appwrite'
+import SingleDoc from './UserDocs'
+import { Link } from 'react-router-dom'
 // import { FaBold, FaItalic, FaList} from 'react-icons/fa'
-import { AiOutlineItalic, AiOutlineUnorderedList, AiOutlineBold, AiOutlineBlock} from "react-icons/ai"
+import { AiOutlineItalic, AiOutlineUnorderedList, AiOutlineBold, AiOutlineBlock, AiOutlineCamera} from "react-icons/ai"
 
 const Articles = () => {
 
@@ -12,17 +14,20 @@ const Articles = () => {
  
   const [userName] = useState("anonymous")
   const [headStyle, setHeadStyle] = useState("##") 
+  
+  const [buttonStatus, setButtonStatus] = useState(false)
   // const [title, setTitle] = useState('')
   const [currentUser, setCurrentUser] = useState("")
   const articleContext = `
 ---
 title: Modify this title 
 author: ${currentUser ? currentUser : userName}
+featured: paste a cover image link here
 ---
 Write your article here
   `
   const [article, setarticle] = useState(articleContext)
-
+  const [articleDoc, setarticleDoc] = useState([])
 
   // get current user account
   const subscriber = () => {
@@ -37,8 +42,9 @@ Write your article here
   }
   // fetch articles from api 
   async function getData() {
-    const response =  await fetch('/articles/')
+    const response =  await fetch('https://wholesale-smash-production.up.railway.app/articles/')
     const postData = await response.json()
+    setarticleDoc(postData)
     console.log(postData)
     
   }
@@ -51,8 +57,8 @@ Write your article here
   const headTwoEvent = (e) => {
     e.preventDefault()
     setHeadStyle(e.target.value)
-    input.current.value += headStyle
-    console.log(input.current)
+    input.current.value += e.target.value
+    
   }
 
   const blockEvent = (e) => {
@@ -74,31 +80,32 @@ Write your article here
   }
   const listEvent = (e) => {
       e.preventDefault()
-      input.current.value += "\n-"
+      input.current.value += "\n- "
   }
 
-
- 
-
    const [imageSelected, setImageSelected] = useState()
-   const uploadImage = () => {
+   const uploadImage = async() => {
     const formdData = new FormData()
     formdData.append("file", imageSelected)
-    formdData.append("upload_preset", "gvg")
+    formdData.append("upload_preset", "blogsite")
+    // formData.append("cloud_name", "dnjzdxki1")
     let data = ""    
-    Axios.post("https://api.cloudinary.com/v2/grace-v/image/upload", formdData).then((response)=>{
+    await Axios.post("https://api.cloudinary.com/v1_1/dnjzdxki1/image/upload", formdData).then((response)=>{
       console.log(response)
       data = response.data["secure_url"]
+      input.current.value += `\n![add alt text here](${data})`
+      setButtonStatus(true)
     })
+    setButtonStatus(false)
     return data
    } 
     return (
         <>
           <Navbar />
-          <div className="articles">
-            
+          <div className="articles">      
+          <button onClick={uploadImage} className="btn-edit" disabled={buttonStatus}> Upload Image</button>      
             <form className="md-editor" method='post' action='/articles/' encType='multipart/form-data'>
-              {/* <input type="text" name='title' value={title} placeholder='title' onChange={e => setTitle(e.target.value)} id='inptitle'/> */}
+              
             <div className='article-area'> 
             
               <div className='article-icons'>
@@ -108,24 +115,27 @@ Write your article here
                   <option value="### ">Heading 3</option>
                 </select>
                               <div>
-
-                <input type='file' onChange={(event) => setImageSelected(event.target.files[0])}/> 
-                <button onClick={uploadImage}> Upload Image</button>
-                <h3>Photo</h3>
+                <label htmlFor='inputFile'> 
+                <AiOutlineCamera size="2em"/>     
+                <input type='file' onChange={(event) => setImageSelected(event.target.files[0])} id="inputFile" accept='image/*'/> 
+                </label>               
+                
+                
                 {/* <Image cloudName="" publicId="" /> */}
                 </div>
+                {/* <span onClick={headOne}><block>H1</block></span> */}
                 <span onClick={blockEvent}><AiOutlineBlock size="2em"/></span>
                 <span onClick={italicEvent}><AiOutlineItalic size="2em"/></span>
                 <span onClick={boldEvent}><AiOutlineBold size="2em"/></span>
                 <span onClick={listEvent}><AiOutlineUnorderedList size="2em"/></span>
-                {/* <FontAwesomeIcon icon="fa-regular fa-b" style={{color: "#000000"}} /> */}
+                
                 </div>  
             
                 <textarea value={article} ref={input} onChange={editPost} id='txtarea' name='article'/>
             </div>
             <div className="md-btns">
                
-                <input type='submit' id="md-btn" value='Save' />
+                <input type='submit' id="md-btn" value='Publish' />
             </div>
             </form>
             
@@ -133,7 +143,16 @@ Write your article here
             <div>
             
                 <h3>Read more articles....</h3>
-                
+                <hr />
+                <div className="value-section">
+                {articleDoc ? articleDoc.map((docs)=> {
+                  return (
+                    
+                    <SingleDoc key={docs.ID} {...docs} />
+                    
+                  )
+                }) : <h2>No articles yet</h2>}
+               </div> 
             </div>
           </div>
         </>
@@ -152,15 +171,3 @@ export default Articles
 
 
 
-
-
-//   const submitForm = () => {
-//     fetch("/articles/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: article
-
-//     })
-// }
