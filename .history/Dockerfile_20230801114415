@@ -32,14 +32,11 @@ RUN go mod download
 
 COPY backend-server ./
 
-ARG credentials
-ENV credentials=$credentials
+FROM railwayapp/nixpacks:latest
 
-# FROM railwayapp/nixpacks:latest as nix
+WORKDIR /app/backend
 
-# WORKDIR /app/backend
-
-# RUN nixpacks build
+RUN nixpacks build
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o main
 
