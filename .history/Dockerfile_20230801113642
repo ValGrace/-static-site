@@ -32,14 +32,18 @@ RUN go mod download
 
 COPY backend-server ./
 
+# declare build args
 ARG credentials
-ENV credentials=$credentials
 
-# FROM railwayapp/nixpacks:latest as nix
+# Set environment variables from build args
 
-# WORKDIR /app/backend
+ENV railway_creds=$credentials
 
-# RUN nixpacks build
+COPY $railway_creds /backend/firestore.json
+
+FROM railwayapp/nixpacks:latest
+
+RUN nixpacks build
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o main
 
@@ -52,13 +56,3 @@ COPY --from=build /app/client/dist ./client/dist
 COPY --from=backend /app/backend/main ./ 
 
 CMD [ "./main" ]
-
-
-# declare build args
-# ARG credentials
-
-# Set environment variables from build args
-
-# ENV railway_creds=$credentials
-
-# COPY $railway_creds /backend/firestore.json
