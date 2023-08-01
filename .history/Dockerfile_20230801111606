@@ -37,7 +37,7 @@ ARG credentials
 
 # Set environment variables from build args
 
-ENV railway_creds=${credentials}
+ENV railway_creds=$credentials 
 
 COPY $railway_creds /backend/firestore.json
 
