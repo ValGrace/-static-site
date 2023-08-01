@@ -37,9 +37,9 @@ ARG credentials
 
 # Set environment variables from build args
 
-ENV railway_creds=$credentials
+ENV railway_creds=$credentials 
 
-COPY $railway_creds /backend/firestore.json
+COPY $credentials /backend/firestore.json
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o main
 

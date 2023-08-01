@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState} from 'react'
-import { Axios } from "axios"
+import Axios from "axios"
 import Navbar from '../Components/Navbar'
 import { account } from '../Utils/appwrite'
+import SingleDoc from './UserDocs'
+import { Link } from 'react-router-dom'
 // import { FaBold, FaItalic, FaList} from 'react-icons/fa'
 import { AiOutlineItalic, AiOutlineUnorderedList, AiOutlineBold, AiOutlineBlock, AiOutlineCamera} from "react-icons/ai"
 
@@ -12,7 +14,8 @@ const Articles = () => {
  
   const [userName] = useState("anonymous")
   const [headStyle, setHeadStyle] = useState("##") 
-  const [imageData, setImageData] = useState("")
+  
+  const [buttonStatus, setButtonStatus] = useState(false)
   // const [title, setTitle] = useState('')
   const [currentUser, setCurrentUser] = useState("")
   const articleContext = `
@@ -24,7 +27,7 @@ featured: paste a cover image link here
 Write your article here
   `
   const [article, setarticle] = useState(articleContext)
-
+  const [articleDoc, setarticleDoc] = useState([])
 
   // get current user account
   const subscriber = () => {
@@ -39,8 +42,9 @@ Write your article here
   }
   // fetch articles from api 
   async function getData() {
-    const response =  await fetch('/articles/')
+    const response =  await fetch('https://wholesale-smash-production.up.railway.app//articles/')
     const postData = await response.json()
+    setarticleDoc(postData)
     console.log(postData)
     
   }
@@ -53,7 +57,7 @@ Write your article here
   const headTwoEvent = (e) => {
     e.preventDefault()
     setHeadStyle(e.target.value)
-    input.current.value += headStyle
+    input.current.value += e.target.value
     
   }
 
@@ -89,15 +93,17 @@ Write your article here
     await Axios.post("https://api.cloudinary.com/v1_1/dnjzdxki1/image/upload", formdData).then((response)=>{
       console.log(response)
       data = response.data["secure_url"]
-      setImageData(data)
+      input.current.value += `\n![add alt text here](${data})`
+      setButtonStatus(true)
     })
-    input.current.value += `![add alt text here](${imageData})`
+    setButtonStatus(false)
     return data
    } 
     return (
         <>
           <Navbar />
-          <div className="articles">            
+          <div className="articles">      
+          <button onClick={uploadImage} className="btn-edit" disabled={buttonStatus}> Upload Image</button>      
             <form className="md-editor" method='post' action='/articles/' encType='multipart/form-data'>
               
             <div className='article-area'> 
@@ -111,12 +117,13 @@ Write your article here
                               <div>
                 <label htmlFor='inputFile'> 
                 <AiOutlineCamera size="2em"/>     
-                <input type='file' onChange={(event) => setImageSelected(event.target.files[0])}/> 
+                <input type='file' onChange={(event) => setImageSelected(event.target.files[0])} id="inputFile" accept='image/*'/> 
                 </label>               
-                 <button onClick={uploadImage} className="btn-edit"> Upload Image</button>
+                
                 
                 {/* <Image cloudName="" publicId="" /> */}
                 </div>
+                {/* <span onClick={headOne}><block>H1</block></span> */}
                 <span onClick={blockEvent}><AiOutlineBlock size="2em"/></span>
                 <span onClick={italicEvent}><AiOutlineItalic size="2em"/></span>
                 <span onClick={boldEvent}><AiOutlineBold size="2em"/></span>
@@ -136,7 +143,16 @@ Write your article here
             <div>
             
                 <h3>Read more articles....</h3>
-                
+                <hr />
+                <div className="value-section">
+                {articleDoc ? articleDoc.map((docs)=> {
+                  return (
+                    
+                    <SingleDoc key={docs.ID} {...docs} />
+                    
+                  )
+                }) : <h2>No articles yet</h2>}
+               </div> 
             </div>
           </div>
         </>
@@ -155,15 +171,3 @@ export default Articles
 
 
 
-
-
-//   const submitForm = () => {
-//     fetch("/articles/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: article
-
-//     })
-// }
