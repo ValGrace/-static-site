@@ -53,11 +53,6 @@ COPY --from=build /app/client/dist ./client/dist
 
 COPY --from=backend /app/backend/main ./ 
 
-ARG PORT
-
-ENV PORT=$PORT
-
-EXPOSE $PORT
 CMD [ "./main" ]
 
 
