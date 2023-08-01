@@ -17,7 +17,7 @@ const (
 	collectionName string = "Blogs"
 )
 
-var credential string = GetCredentials("F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
@@ -71,7 +71,11 @@ func GetCollection() ([]BlogPost, error) {
 		posts []BlogPost
 	)
 
-	client, _ := firestore.NewClient(ctx, "learner-new-project")
+	client, err := firestore.NewClient(ctx, "learner-new-project")
+	if err != nil {
+		fmt.Print(err)
+
+	}
 	defer client.Close()
 	iter := client.Collection(collectionName).Documents(ctx)
 

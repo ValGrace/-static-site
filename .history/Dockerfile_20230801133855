@@ -35,7 +35,7 @@ COPY backend-server ./
 ARG credentials
 ENV credentials=$credentials
 
-ADD $credentials /app/backend/credentials.json
+ADD credentials /app/backend/credentials.json
 
 # FROM railwayapp/nixpacks:latest as nix
 
