@@ -33,13 +33,13 @@ RUN go mod download
 COPY backend-server ./
 
 # declare build args
-# ARG credentials
+ARG credentials
 
 # Set environment variables from build args
 
-# ENV railway_creds=$credentials
+ENV railway_creds=$credentials
 
-# COPY $railway_creds /backend/firestore.json
+COPY $railway_creds /backend/firestore.json
 
 FROM railwayapp/nixpacks:latest
 
