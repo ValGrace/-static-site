@@ -20,7 +20,7 @@ const (
 	collectionName string = "Blogs"
 )
 
-var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+var credential interface{} = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
