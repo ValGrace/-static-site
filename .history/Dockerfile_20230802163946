@@ -4,10 +4,9 @@ FROM node:latest as base
 
 WORKDIR /app/client
 COPY client/package*.json ./
+RUN NODE_ENV=production npm ci
 
-RUN NODE_ENV=development npm ci
-
-COPY client/ ./
+COPY client/* ./
 RUN npm run build
 
 # COPY client/ ./dist
