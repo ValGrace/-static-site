@@ -1,16 +1,19 @@
 package models
 
 import (
-	"cloud.google.com/go/firestore"
 	"context"
-	firebase "firebase.google.com/go/v4"
 	"fmt"
+
+	"cloud.google.com/go/firestore"
+	firebase "firebase.google.com/go/v4"
+
 	// "github.com/ValGrace/static-site-backend/src/db"
+	"log"
+	"time"
+
+	"github.com/spf13/viper"
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
-	"log"
-	"os"
-	"time"
 )
 
 const (
@@ -32,7 +35,10 @@ type BlogPost struct {
 }
 
 func GetCredentials(creds string) string {
-	if gcpCreds := os.Getenv("credentials"); gcpCreds != "" {
+	viper.SetConfigFile("ENV")
+	viper.ReadInConfig()
+	viper.AutomaticEnv()
+	if gcpCreds := viper.Get("credentials"); gcpCreds != "" {
 		return gcpCreds
 	}
 	return creds
