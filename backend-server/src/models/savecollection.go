@@ -34,7 +34,7 @@ type BlogPost struct {
 	Created  time.Time `firestore:"created,omitempty"`
 }
 
-func GetCredentials(creds string) interface{} {
+func GetCredentials(creds interface{}) interface{} {
 	viper.SetConfigFile("ENV")
 	viper.ReadInConfig()
 	viper.AutomaticEnv()
