@@ -2,15 +2,16 @@ package main
 
 import (
 	"embed"
+	"os"
 
 	"fmt"
 
 	"net/http"
+
 	"path/filepath"
 
 	"github.com/ValGrace/static-site-backend/src/routes"
 	"github.com/gorilla/mux"
-	"github.com/spf13/viper"
 )
 
 var staticFs embed.FS
@@ -33,10 +34,8 @@ func (h clientHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	http.FileServer(http.Dir(h.staticPath)).ServeHTTP(w, r)
 }
 func envPortOr(port string) string {
-	viper.SetConfigFile("ENV")
-	viper.ReadInConfig()
-	viper.AutomaticEnv()
-	if envPort := viper.Get("PORT"); envPort != "" {
+
+	if envPort := os.Getenv("PORT"); envPort != "" {
 		return ":" + envPort
 	}
 	return ":" + port
