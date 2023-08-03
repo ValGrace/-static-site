@@ -7,7 +7,6 @@ import (
 	"fmt"
 
 	"net/http"
-
 	"path/filepath"
 
 	"github.com/ValGrace/static-site-backend/src/routes"

@@ -11,7 +11,7 @@ import (
 	"log"
 	"time"
 
-	// "github.com/spf13/viper"
+	"github.com/spf13/viper"
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 )
@@ -20,7 +20,7 @@ const (
 	collectionName string = "Blogs"
 )
 
-// var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
@@ -34,20 +34,18 @@ type BlogPost struct {
 	Created  time.Time `firestore:"created,omitempty"`
 }
 
-// func GetCredentials(creds string) string {
-// 	viper.SetConfigFile("ENV")
-// 	viper.ReadInConfig()
-// 	viper.AutomaticEnv()
-// 	if gcpCreds := viper.Get("credentials"); gcpCreds != "" {
-// 		gcreds := fmt.Sprintf(gcpCreds)
-// 		return gcreds
-// 	}
-// 	return fmt.Sprintf(creds)
-// }
+func GetCredentials(creds string) string {
+	viper.SetConfigFile("ENV")
+	viper.ReadInConfig()
+	viper.AutomaticEnv()
+	if gcpCreds := viper.Get("credentials"); gcpCreds != "" {
+		return gcpCreds
+	}
+	return creds
+}
 
 func (post *BlogPost) Save() *BlogPost {
-	
-	const credential string = "F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
+	// const credential string = "F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
 	opt := option.WithCredentialsFile(credential)
 	ctx := context.Background()
 	app, err := firebase.NewApp(ctx, nil, opt)
