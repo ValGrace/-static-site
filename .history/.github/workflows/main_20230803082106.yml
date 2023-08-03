@@ -3,7 +3,7 @@ name: staticsite
 on: 
   push:
     branches:
-      - "newdev"
+      - "webdev"
       
 jobs:
   build:
