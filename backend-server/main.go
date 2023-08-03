@@ -50,6 +50,6 @@ func main() {
 	fmt.Printf("Starting server at env port")
 
 	r.PathPrefix("/assets").Handler(http.StripPrefix("/assets", http.FileServer(http.Dir("../client/dist/assets"))))
-	// var port = envPortOr("3000")
-	http.ListenAndServe("0.0.0.0", r)
+	var port = envPortOr("3000")
+	http.ListenAndServe(port, r)
 }
