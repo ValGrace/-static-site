@@ -47,7 +47,7 @@ func GetCredentials(creds string) string {
 func (post *BlogPost) Save() *BlogPost {
 
 	// const credential string = "f:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
-	opt := option.WithCredentialsJSON([]byte(os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")))
+	opt := option.WithCredentialsJSON([]byte(os.Getenv("credentials")))
 	ctx := context.Background()
 	app, err := firebase.NewApp(ctx, nil, opt)
 
