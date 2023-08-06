@@ -22,7 +22,7 @@ const (
 	// credential     string = "https://github.com/ValGrace/-static-site/blob/webdev/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
 )
 
-var credential string = GetCredentials("https://github.com/ValGrace/-static-site/blob/webdev/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
@@ -42,7 +42,7 @@ func GetCredentials(creds string) string {
 		gcreds := fmt.Sprintf(gcpCreds)
 		return gcreds
 	}
-	return fmt.Sprintf(creds)
+	// return fmt.Sprintf(creds)
 }
 
 func (post *BlogPost) Save() *BlogPost {
