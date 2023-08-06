@@ -1,3 +1,0 @@
-commands:
- - name: web
-   command: ./main
