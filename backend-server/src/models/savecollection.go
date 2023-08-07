@@ -18,6 +18,7 @@ import (
 
 const (
 	collectionName string = "Blogs"
+	credential     string = "etc/secrets/GOOGLE_APPLICATION_CREDENTIALS_JSON"
 )
 
 // var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
@@ -35,19 +36,17 @@ type BlogPost struct {
 }
 
 // func GetCredentials(creds string) string {
-// 	viper.SetConfigFile("ENV")
-// 	viper.ReadInConfig()
-// 	viper.AutomaticEnv()
-// 	if gcpCreds := viper.Get("credentials"); gcpCreds != "" {
+
+// 	if gcpCreds := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"); gcpCreds != "" {
 // 		gcreds := fmt.Sprintf(gcpCreds)
 // 		return gcreds
 // 	}
-// 	return fmt.Sprintf(creds)
+// 	return creds
 // }
 
 func (post *BlogPost) Save() *BlogPost {
-	
-	const credential string = "F:/static-site/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
+
+	// const credential string = "https://github.com/ValGrace/-static-site/blob/webdev/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
 	opt := option.WithCredentialsFile(credential)
 	ctx := context.Background()
 	app, err := firebase.NewApp(ctx, nil, opt)
