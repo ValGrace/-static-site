@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"log"
 	"os"
 
 	"fmt"
@@ -57,9 +58,9 @@ func main() {
 	spa := clientHandler{staticPath: "../client/dist", indexPath: "index.html"}
 	r.PathPrefix("/").Handler(spa)
 	http.Handle("/", r)
-	fmt.Printf("Starting server at env port")
 
 	r.PathPrefix("/assets").Handler(http.StripPrefix("/assets", http.FileServer(http.Dir("../client/dist/assets"))))
 	var port = envPortOr("3000")
-	http.ListenAndServe(port, r)
+	fmt.Printf("Starting server at env port" + port[1:])
+	log.Fatal(http.ListenAndServe(port, r))
 }

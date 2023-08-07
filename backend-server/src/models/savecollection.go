@@ -9,7 +9,6 @@ import (
 
 	// "github.com/ValGrace/static-site-backend/src/db"
 	"log"
-	"os"
 	"time"
 
 	// "github.com/spf13/viper"
@@ -19,10 +18,10 @@ import (
 
 const (
 	collectionName string = "Blogs"
-	// credential     string = "https://github.com/ValGrace/-static-site/blob/webdev/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
+	credential     string = "etc/secrets/GOOGLE_APPLICATION_CREDENTIALS_JSON"
 )
 
-var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+// var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
@@ -36,19 +35,19 @@ type BlogPost struct {
 	Created  time.Time `firestore:"created,omitempty"`
 }
 
-func GetCredentials(creds string) string {
+// func GetCredentials(creds string) string {
 
-	if gcpCreds := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"); gcpCreds != "" {
-		gcreds := fmt.Sprintf(gcpCreds)
-		return gcreds
-	}
-	return creds
-}
+// 	if gcpCreds := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"); gcpCreds != "" {
+// 		gcreds := fmt.Sprintf(gcpCreds)
+// 		return gcreds
+// 	}
+// 	return creds
+// }
 
 func (post *BlogPost) Save() *BlogPost {
 
 	// const credential string = "https://github.com/ValGrace/-static-site/blob/webdev/backend-server/src/db/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json"
-	opt := option.WithCredentialsJSON([]byte(credential))
+	opt := option.WithCredentialsFile(credential)
 	ctx := context.Background()
 	app, err := firebase.NewApp(ctx, nil, opt)
 
