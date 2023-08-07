@@ -3,6 +3,7 @@ package models
 import (
 	"context"
 	"fmt"
+	"os"
 
 	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go/v4"
@@ -18,10 +19,10 @@ import (
 
 const (
 	collectionName string = "Blogs"
-	credential     string = "etc/secrets/GOOGLE_APPLICATION_CREDENTIALS_JSON"
+	// credential     string = "etc/secrets/GOOGLE_APPLICATION_CREDENTIALS_JSON"
 )
 
-// var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
+var credential string = GetCredentials("C:/Users/Hp 15/Downloads/learner-new-project-firebase-adminsdk-6zymr-fa93826a2d.json")
 
 // var credential string = os.Getenv(credential)
 type repo struct{}
@@ -35,14 +36,14 @@ type BlogPost struct {
 	Created  time.Time `firestore:"created,omitempty"`
 }
 
-// func GetCredentials(creds string) string {
+func GetCredentials(creds string) string {
 
-// 	if gcpCreds := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON"); gcpCreds != "" {
-// 		gcreds := fmt.Sprintf(gcpCreds)
-// 		return gcreds
-// 	}
-// 	return creds
-// }
+	if gcpCreds := os.Getenv("GOOGLE_APPLICATION_CREDENTIALS"); gcpCreds != "" {
+		gcreds := fmt.Sprintf(gcpCreds)
+		return gcreds
+	}
+	return creds
+}
 
 func (post *BlogPost) Save() *BlogPost {
 
