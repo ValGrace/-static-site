@@ -1,4 +1,4 @@
-import pwbg from "../assets/pwbg.jpg"
+
 const TopSection = () => {
 
 

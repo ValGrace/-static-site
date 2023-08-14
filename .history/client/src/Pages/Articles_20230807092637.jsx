@@ -2,6 +2,8 @@ import { useEffect, useRef, useState} from 'react'
 import Axios from "axios"
 import Navbar from '../Components/Navbar'
 import { account } from '../Utils/appwrite'
+import SingleDoc from './UserDocs'
+import { Link } from 'react-router-dom'
 // import { FaBold, FaItalic, FaList} from 'react-icons/fa'
 import { AiOutlineItalic, AiOutlineUnorderedList, AiOutlineBold, AiOutlineBlock, AiOutlineCamera} from "react-icons/ai"
 
@@ -21,12 +23,11 @@ const Articles = () => {
 title: Modify this title 
 author: ${currentUser ? currentUser : userName}
 featured: paste a cover image link here
-description: add a description to your blog
 ---
 Write your article here
   `
   const [article, setarticle] = useState(articleContext)
-
+  const [articleDoc, setarticleDoc] = useState([])
 
   // get current user account
   const subscriber = () => {
@@ -43,6 +44,7 @@ Write your article here
   async function getData() {
     const response =  await fetch('/articles/')
     const postData = await response.json()
+    setarticleDoc(postData)
     console.log(postData)
     
   }
@@ -121,6 +123,7 @@ Write your article here
                 
                 {/* <Image cloudName="" publicId="" /> */}
                 </div>
+                {/* <span onClick={headOne}><block>H1</block></span> */}
                 <span onClick={blockEvent}><AiOutlineBlock size="2em"/></span>
                 <span onClick={italicEvent}><AiOutlineItalic size="2em"/></span>
                 <span onClick={boldEvent}><AiOutlineBold size="2em"/></span>
@@ -140,7 +143,16 @@ Write your article here
             <div>
             
                 <h3>Read more articles....</h3>
-                
+                <hr />
+                <div className="value-section">
+                {articleDoc ? articleDoc.map((docs)=> {
+                  return (
+                    
+                    <SingleDoc key={docs.ID} {...docs} />
+                    
+                  )
+                }) : <h2>No articles yet</h2>}
+               </div> 
             </div>
           </div>
         </>
@@ -159,15 +171,3 @@ export default Articles
 
 
 
-
-
-//   const submitForm = () => {
-//     fetch("/articles/", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: article
-
-//     })
-// }

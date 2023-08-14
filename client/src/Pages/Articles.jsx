@@ -42,7 +42,7 @@ Write your article here
   }
   // fetch articles from api 
   async function getData() {
-    const response =  await fetch('https://wholesale-smash-production.up.railway.app/articles/')
+    const response =  await fetch('/articles/')
     const postData = await response.json()
     setarticleDoc(postData)
     console.log(postData)

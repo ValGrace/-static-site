@@ -1,6 +1,4 @@
-// import { useState } from "react"
-// import axios from "axios" 
-// import ReactHtmlParser from 'react-html-parser'
+
 const TopSection = () => {
 
 
@@ -20,12 +18,12 @@ const TopSection = () => {
          </h2>
       <p>Welcome to your number one solution to writing and publishing articles. We generate an optimied web page when you publsih your article and make it available to our thousands of daily readers.</p>
       </div>
-      <div className="head-section">
+      {/* <div className="head-section">
         <div className="head-img">
-            <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="sec-photo" />
+            <img src={pwbg} alt="sec-photo" />
         </div>
         
-      </div>
+      </div> */}
   
       </>
     )

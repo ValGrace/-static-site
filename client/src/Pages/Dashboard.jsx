@@ -45,7 +45,7 @@ const Dashboard = () => {
             <button id="auth-btns" onClick={ghostLogin}>Login with Ghost account</button>
             <h5>{error}</h5>
          </div>
-         <Link to="/home">Home</Link>
+         <Link to="/">Home</Link>
        </div>
     )
 }

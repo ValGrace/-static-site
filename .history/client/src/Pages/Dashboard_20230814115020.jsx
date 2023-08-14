@@ -1,9 +1,9 @@
-import React, { useReducer} from 'react'
+import React, { useReducer, useState} from 'react'
 import Login from '../Components/Login'
 import Signup from '../Components/Signup'
 import "../Components/Inputs.css"
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../Context/UserContext'
+// import { useAuth } from '../Context/UserContext'
 import { account } from '../Utils/appwrite'
 const initialState = {page : <Login />}
 function reducer(state, action) {
@@ -29,7 +29,7 @@ const Dashboard = () => {
         }
         catch {
              setError("Failed to Create anonymous account") 
-        }
+        }  
     }
     return (
         <div className='dashboard'>
@@ -45,7 +45,7 @@ const Dashboard = () => {
             <button id="auth-btns" onClick={ghostLogin}>Login with Ghost account</button>
             <h5>{error}</h5>
          </div>
-         <Link to="/home">Home</Link>
+         <Link to="/">Home</Link>
        </div>
     )
 }
