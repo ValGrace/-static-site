@@ -28,8 +28,8 @@
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "@vitejs/plugin-react-swc": "^3.0.0",
+    "@vitejs/plugin-react-swc": "^3.11.0",
     "react-icons": "^4.10.1",
-    "vite": "^4.5.14"
+    "vite": "^7.1.3"
   }
 }
